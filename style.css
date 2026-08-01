@@ -1,0 +1,642 @@
+/* ===========================================
+   Hair Gacha
+=========================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    background:#f4f4f4;
+    color:#222;
+    font-family:sans-serif;
+
+}
+
+
+/* ===========================================
+   페이지
+=========================================== */
+
+.page{
+
+    display:none;
+
+    width:100vw;
+    height:100vh;
+
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+
+    gap:40px;
+
+}
+
+.page.active{
+
+    display:flex;
+
+}
+
+#intro{
+    width:100vw;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    background:#000;
+}
+
+#introAnimation{
+    width:100vw;
+    height:100vh;
+    object-fit:contain;
+    display:block;
+}
+
+#startPage{
+    background:#0b0b0b;
+}
+
+#startBtn{
+    min-width:280px;
+    padding:26px 52px;
+    border:2px solid #fff;
+    background:transparent;
+    color:#fff;
+    font-size:56px;
+    font-weight:800;
+    letter-spacing:.08em;
+    border-radius:18px;
+}
+
+#startBtn:hover{
+    background:#fff;
+    color:#111;
+}
+
+.customizeLayout{
+    display:flex;
+    width:100%;
+    max-width:1200px;
+    gap:30px;
+    align-items:flex-start;
+    justify-content:center;
+}
+
+.customizePreview{
+    width:60%;
+    min-width:320px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.customizeOptions{
+    width:30%;
+    min-width:220px;
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+    padding:20px;
+    border:2px solid #ddd;
+    border-radius:18px;
+    background:#fff;
+}
+
+.optionsHeader{
+    font-size:20px;
+    font-weight:700;
+}
+
+.partSelector{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:12px;
+}
+
+#hairSelector{
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+    grid-template-rows:repeat(3, auto);
+    grid-auto-flow: row;
+    gap:12px;
+    width:100%;
+    max-width:400px;
+}
+
+.partSelector .selectItem{
+    width:100%;
+    min-height:70px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:18px;
+    font-weight:600;
+    text-transform:uppercase;
+    padding:0 12px;
+    background:white;
+    color:#222;
+    border:2px solid #ddd;
+}
+
+/* position controls styling */
+.positionControls{
+    margin-top:12px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    align-items:flex-start;
+    justify-content:flex-start;
+}
+
+.posButtons{
+    display:flex;
+    gap:8px;
+}
+
+.posButtons button{
+    padding:8px 10px;
+    font-size:16px;
+}
+
+.posSlider label{
+    font-size:14px;
+}
+
+.posSlider input[type="range"]{
+    width:180px;
+    margin-left:8px;
+}
+
+.posReset button{
+    padding:8px 12px;
+    font-size:14px;
+}
+
+/* scale controls */
+.scaleControls{
+    display:flex;
+    gap:12px;
+    align-items:center;
+    width:100%;
+}
+
+.scaleSlider label{
+    font-size:14px;
+}
+
+.scaleSlider input[type="range"]{
+    width:180px;
+    margin-left:8px;
+}
+
+.scaleButtons button{
+    padding:6px 10px;
+    font-size:14px;
+}
+
+.selectItem.active{
+    border-color:#222;
+    background:#222;
+    color:#fff;
+}
+
+#selectedPartText{
+    font-size:16px;
+    color:#555;
+    line-height:1.5;
+}
+
+
+/* ===========================================
+   제목
+=========================================== */
+
+h1{
+
+    font-size:40px;
+    font-weight:bold;
+
+}
+
+h2{
+
+    font-size:22px;
+    margin-bottom:15px;
+
+}
+
+
+/* ===========================================
+   버튼
+=========================================== */
+
+button{
+
+    padding:16px 40px;
+
+    border:none;
+
+    background:#222;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-size:18px;
+
+    border-radius:12px;
+
+    transition:.2s;
+
+}
+
+button:hover{
+
+    transform:scale(1.05);
+
+}
+
+.secondaryButton{
+    background:#ccc;
+    color:#222;
+}
+
+.cutButton{
+    background:#ff8a00;
+    color:#fff;
+}
+
+.cutButton:hover{
+    background:#ff9800;
+}
+
+.controlButtons{
+    display:flex;
+    gap:16px;
+    justify-content:center;
+    margin-top:24px;
+}
+
+
+/* ===========================================
+   로고
+=========================================== */
+
+#logo{
+
+    width:350px;
+
+}
+
+
+/* ===========================================
+   캐릭터
+=========================================== */
+
+.character{
+
+    position:relative;
+    isolation:isolate;
+
+    width:320px;
+    height:420px;
+
+}
+
+
+/* 모든 파츠 */
+
+.character img{
+
+    position:absolute;
+
+    left:0;
+    top:0;
+
+    width:100%;
+    pointer-events:none;
+
+}
+
+.character img:not(#bodyBase):not(#bodyBaseHair):not(#wantedBody):not(#resultBody){
+    transform:translateY(-3%);
+    z-index:1;
+}
+
+#bodyBase {
+    z-index: 0;
+}
+
+#bodyBaseHair {
+    z-index: 2;
+}
+
+#hairBack {
+    z-index: 1 !important;
+}
+
+#faceHair,
+#eyesHair,
+#eyebrowHair,
+#noseHair,
+#mouthHair,
+#beardHair,
+#glassesHair {
+    z-index: 3;
+}
+
+#hairSide {
+    z-index: 4;
+}
+
+#hairFront {
+    z-index: 5;
+}
+
+/* Hair page fixed layer order */
+#hairPage .character #hairBack {
+    z-index: 1 !important;
+}
+
+#hairPage .character #bodyBaseHair {
+    z-index: 2 !important;
+}
+
+#hairPage .character #faceHair,
+#hairPage .character #eyesHair,
+#hairPage .character #eyebrowHair,
+#hairPage .character #noseHair,
+#hairPage .character #mouthHair,
+#hairPage .character #beardHair,
+#hairPage .character #glassesHair {
+    z-index: 3 !important;
+}
+
+#hairPage .character #hairSide {
+    z-index: 4 !important;
+}
+
+#hairPage .character #hairFront {
+    z-index: 5 !important;
+}
+
+/* RESULT layers: keep back hair at the very back */
+#wantedBack,
+#resultBack {
+    z-index: 1 !important;
+}
+
+#wantedBody,
+#resultBody {
+    z-index: 2 !important;
+}
+
+#wantedFace,
+#wantedEyes,
+#wantedEyebrow,
+#wantedNose,
+#wantedMouth,
+#wantedBeard,
+#wantedGlasses,
+#resultFace,
+#resultEyes,
+#resultEyebrow,
+#resultNose,
+#resultMouth,
+#resultBeard,
+#resultGlasses {
+    z-index: 3 !important;
+}
+
+#wantedSide,
+#resultSide {
+    z-index: 4 !important;
+}
+
+#wantedFront,
+#resultFront {
+    z-index: 5 !important;
+}
+
+/* 결과 작은 캐릭터 */
+
+.character.mini{
+
+    transform:scale(.65);
+
+}
+
+
+/* ===========================================
+   선택창
+=========================================== */
+
+#faceSelector{
+
+    display:flex;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
+    justify-content:center;
+
+    width:900px;
+
+}
+
+#hairSelector{
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+    grid-auto-rows:auto;
+    gap:12px;
+    width:100%;
+    max-width:400px;
+}
+
+
+/* 샘플 버튼 */
+
+.selectItem{
+
+    width:80px;
+    height:80px;
+
+    background:white;
+
+    border:2px solid #ddd;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+.selectItem:hover{
+
+    border-color:black;
+
+}
+
+
+/* ===========================================
+   커트 화면
+=========================================== */
+
+#blurScreen{
+
+    width:100vw;
+    height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    overflow:hidden;
+    background:#000;
+    position:relative;
+
+}
+
+#cutAnimation{
+    width:100vw;
+    height:100vh;
+    object-fit:contain;
+    display:block;
+    filter:blur(0);
+    transition:filter .25s ease;
+}
+
+#blurScreen.holdBlur #cutAnimation{
+    filter:blur(25px);
+}
+
+#cutOverlayText{
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%, -50%);
+    z-index:2;
+    color:#fff;
+    text-shadow:0 2px 12px rgba(0,0,0,.75);
+    text-align:center;
+}
+
+
+/* ===========================================
+   결과
+=========================================== */
+
+.compare{
+
+    display:flex;
+
+    gap:120px;
+
+    justify-content:center;
+    align-items:flex-start;
+
+}
+
+#resultPage .result .character{
+    width:420px;
+    height:552px;
+}
+
+#resultPage{
+    position:relative;
+}
+
+.wanted{
+    position:absolute;
+    right:2%;
+    bottom:2%;
+    width:20vw;
+    max-width:220px;
+    min-width:120px;
+    --wanted-border-offset:clamp(15.75px, 2.625vw, 28.875px);
+}
+
+.wanted h2{
+    position:static;
+    width:auto;
+    height:auto;
+    margin:0 0 calc(var(--wanted-border-offset) * -1);
+    display:block;
+    font-size:22px;
+    line-height:1.2;
+    background:transparent;
+    text-align:left;
+    transform:translateY(-30px);
+}
+
+#resultPage .result h2{
+    font-size:28.6px;
+}
+
+.wanted .character.mini{
+    transform:scale(1);
+    width:100%;
+    height:auto;
+    aspect-ratio: 320 / 420;
+    box-sizing:border-box;
+}
+
+.wanted .character.mini::after{
+    content:"";
+    position:absolute;
+    left:0;
+    top:calc(var(--wanted-border-offset) * -1);
+    width:100%;
+    height:100%;
+    border:2px solid #222;
+    box-sizing:border-box;
+    pointer-events:none;
+}
+
+
+/* ===========================================
+   판정
+=========================================== */
+
+#resultPage #matchResult{
+
+    display:flex;
+
+    gap:20px;
+
+    font-size:80px;
+
+}
+
+
+#resultPage #grade{
+
+    font-size:78px;
+
+}
+
+
+/* ===========================================
+   반응형
+=========================================== */
+
+@media(max-width:900px){
+
+    .compare{
+
+        flex-direction:column;
+
+        gap:40px;
+
+    }
+
+}
