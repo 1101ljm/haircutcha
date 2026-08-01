@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HAIR CUTCHA</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<!-- =========================
+START
+========================= -->
+
+<section id="startPage" class="page active">
+
+    <button id="startBtn" type="button">CUTCHA</button>
+
+</section>
+
+<!-- =========================
+INTRO
+========================= -->
+
+<section id="introPage" class="page">
+
+    <div id="intro">
+        <img id="introAnimation" src="img/introanimation_0000.png" alt="intro animation">
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+FACE
+========================= -->
+
+<section id="facePage" class="page">
+
+    <h1>顔をつくる</h1>
+
+    <div class="customizeLayout">
+
+        <div class="customizePreview">
+            <div class="character">
+                <img id="bodyBase" src="img/body.png" alt="body base">
+
+                <img id="face" src="img/face/1.png">
+                <img id="eyes" src="img/eyes/1.png">
+                <img id="eyebrow" src="img/eyebrow/1.png">
+                <img id="nose" src="img/nose/1.png">
+                <img id="mouth" src="img/mouth/1.png">
+                <img id="beard" src="img/beard/1.png">
+                <img id="glasses" src="img/glasses/1.png">
+
+            </div>
+        </div>
+
+        <div class="customizeOptions">
+            <div class="optionsHeader">顔 → 目 → 眉 → 口 → メガネ の順に選択してください</div>
+            <div id="partSelector" class="partSelector"></div>
+            <p id="selectedPartText">顔 を選択してください。</p>
+
+            <div id="positionControls" class="positionControls" hidden>
+                <div class="posSlider">
+                    <label>位置調整 (Y)：
+                        <input id="posY" type="range" min="-20" max="20" step="1" value="0">
+                    </label>
+                </div>
+
+                <div class="scaleControls">
+                    <div class="scaleSlider">
+                        <label>サイズ (%):
+                            <input id="posScale" type="range" min="80" max="120" step="1" value="100">
+                        </label>
+                    </div>
+                </div>
+
+                <div class="posReset">
+                    <button id="resetPos" type="button">位置リセット</button>
+                    <button id="resetScale" type="button">サイズリセット</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="controlButtons">
+        <button id="faceBack" class="secondaryButton" type="button" disabled>前に戻る</button>
+        <button id="nextToHair" type="button" disabled>次へ</button>
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+HAIR
+========================= -->
+
+<section id="hairPage" class="page">
+
+    <h1>理想の髪型</h1>
+
+    <div class="customizeLayout">
+
+        <div class="customizePreview">
+            <div class="character">
+                <img id="bodyBaseHair" src="img/body.png" alt="body base">
+
+                <img id="faceHair" src="img/face/1.png">
+                <img id="eyesHair" src="img/eyes/1.png">
+                <img id="eyebrowHair" src="img/eyebrow/1.png">
+                <img id="noseHair" src="img/nose/1.png">
+                <img id="mouthHair" src="img/mouth/1.png">
+                <img id="beardHair" src="img/beard/1.png">
+                <img id="glassesHair" src="img/glasses/1.png">
+
+                <img id="hairBack" src="img/hair_back/1.png">
+                <img id="hairSide" src="img/hair_side/1.png">
+                <img id="hairFront" src="img/hair_front/1.png">
+
+            </div>
+        </div>
+
+        <div class="customizeOptions">
+            <div class="optionsHeader">前髪 → 横髪 → 後ろ髪 の順に選択してください</div>
+            <div id="hairSelector" class="partSelector"></div>
+            <p id="selectedHairText">前髪 を選択してください。</p>
+
+            <div id="hairPositionControls" class="positionControls" hidden>
+                <div class="posSlider">
+                    <label>位置調整 (Y)：
+                        <input id="hairPosY" type="range" min="-20" max="20" step="1" value="0">
+                    </label>
+                </div>
+
+                <div class="scaleControls">
+                    <div class="scaleSlider">
+                        <label>サイズ (%):
+                            <input id="hairPosScale" type="range" min="80" max="120" step="1" value="100">
+                        </label>
+                    </div>
+                </div>
+
+                <div class="posReset">
+                    <button id="hairResetPos" type="button">位置リセット</button>
+                    <button id="hairResetScale" type="button">サイズリセット</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="controlButtons">
+        <button id="hairStepBack" class="secondaryButton" type="button" disabled>前に戻る</button>
+        <button id="backToFace" class="secondaryButton" type="button">前のページへ</button>
+        <button id="hairNext" type="button" disabled>次へ</button>
+        <button id="cutBtn" class="cutButton" type="button" disabled hidden>カットする</button>
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+CUT
+========================= -->
+
+<section id="cutPage" class="page">
+
+    <div id="blurScreen">
+        <img id="cutAnimation" src="img/cut/cut_animation_0000.png" alt="cut animation">
+        <h1 id="cutOverlayText">メガネをお預かりします。</h1>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+RESULT
+========================= -->
+
+<section id="resultPage" class="page">
+
+    <div class="compare">
+
+        <div class="wanted">
+
+            <h2>理想</h2>
+
+            <div class="character mini">
+
+                <img id="wantedBody" src="img/body.png">
+                <img id="wantedFace">
+                <img id="wantedEyes">
+                <img id="wantedEyebrow">
+                <img id="wantedNose">
+                <img id="wantedMouth">
+                <img id="wantedBeard">
+                <img id="wantedGlasses">
+
+                <img id="wantedBack">
+                <img id="wantedSide">
+                <img id="wantedFront">
+
+            </div>
+
+        </div>
+
+        <div class="result">
+
+            <h2>仕上がり</h2>
+
+            <div class="character">
+
+                <img id="resultBody" src="img/body.png">
+
+                <img id="resultFace">
+                <img id="resultEyes">
+                <img id="resultEyebrow">
+                <img id="resultNose">
+                <img id="resultMouth">
+                <img id="resultBeard">
+                <img id="resultGlasses">
+
+                <img id="resultBack">
+                <img id="resultSide">
+                <img id="resultFront">
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="matchResult">
+
+        <span id="frontMatch"></span>
+        <span id="sideMatch"></span>
+        <span id="backMatch"></span>
+
+    </div>
+
+    <h1 id="grade"></h1>
+
+</section>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
